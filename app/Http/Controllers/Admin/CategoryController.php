@@ -62,11 +62,16 @@ class CategoryController extends Controller
     //update
     public function update(Request $req, $id){
         $cate = Category::find($id);
-
+        if($req->name==null&&$req->status==null){
+            return redirect()->route('categories.index')->with('warning','Nothing has been changed');
+        }
+        if($req->name==null){
+            $req->name=$cate->name;
+        }
         $cate->name = $req->name;
-        
+        $cate->status=$req->status;
         $cate->save();
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success','Update successfully');
     }
 
     //edit
@@ -78,8 +83,12 @@ class CategoryController extends Controller
     //delete
     public function delete($id){
         $cate=Category::find($id);
-        $cate->delete();
-        return redirect()->route('categories.index');
+        if($cate->product()->count()>0){
+            return redirect()->route('categories.index')->with('error','You only can delete category have no product');
+
+        }
+        else $cate->delete();
+        return redirect()->route('categories.index')->with('success','This category has been deleted');
     }
 
 

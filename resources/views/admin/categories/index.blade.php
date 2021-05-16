@@ -5,9 +5,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="card mb-3">
             <div class="card-header">
-                <h3><i class="fas fa-table"></i> Basic data table</h3>
-                DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table: pagination, instant search and multi-column ordering.
-                <a target="_blank" href="https://datatables.net/">(more details)</a>
+                <h3><i class="fas fa-table"></i> Category List</h3>
             </div>
             
             <div class="card-body">
@@ -49,13 +47,11 @@
                                     <a href="{{route('categories.edit',$item->id)}}" class="btn btn-sm btn-success" style="margin-right:5px">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{route('categories.delete',$item->id)}}" method="POST">
-                                        @csrf
-                                        @method ('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">
+                                       
+                                        <a href="{{route('categories.delete',$item->id)}}" class="btn btn-sm btn-danger btndelete">
                                             <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
+                                        </a>
+                                    
                             
                                 </td>
                             </tr> 
@@ -64,6 +60,10 @@
                         @endif
                         
                     </table>
+                    <form action="" method="POST"  id="form-delete">
+                        @csrf
+                        @method ('DELETE')
+                    </form>
                     <hr>
                     {{$catelist->appends(request()->all())->links()}}
                 </div>
@@ -94,4 +94,20 @@
     })
     $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 </script> --}}
+@stop
+@section('js')
+    <script>
+        $('.btndelete').click(function(ev){
+            ev.preventDefault();
+            var _href=$(this).attr('href');
+            $('form#form-delete').attr('action',_href);
+            
+            if(confirm('Are you sure?')){
+                $('form#form-delete').submit();
+            }
+
+        }
+        )
+    </script>
+    
 @stop

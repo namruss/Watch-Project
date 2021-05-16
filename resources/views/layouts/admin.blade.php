@@ -1,4 +1,7 @@
-
+<?php
+    $menus=config('menu');
+    dd($menus); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,19 +13,19 @@
     <meta name="author" content="Your website">
     
     <!-- Favicon -->
-    <link href="{{url('admin/public/assetBackEnd/assets')}}/images/favicon.ico">
+    <link href="/images/favicon.ico">
     
     <!-- Bootstrap CSS -->
-    <link href="{{url('public')}}/assetBackEnd/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../../../assetBackEnd/assets/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!--Ajax CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     
     <!-- Font Awesome CSS -->
-    <link href="assetBackEnd/assets/font-awesome/css/all.css" rel="stylesheet"/>
+    <link href="../../../../assetBackEnd/assets/font-awesome/css/all.css" rel="stylesheet"/>
 
     <!-- Custom CSS -->
-    <link href="assetBackEnd/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../assetBackEnd/assets/css/style.css" rel="stylesheet" type="text/css" />
 
     <!-- BEGIN CSS for this page -->
     <link rel="stylesheet" type="text/css" href="assets/plugins/chart.js/Chart.min.css" />
@@ -314,6 +317,19 @@
                             </div>
                         </div>
                     </div>
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger" role="alert">
+                        <a href="" class="close" data-dimiss="alert" aria-label="close" aria-hidden="true"></a>
+                        {{Session::get('error')}}
+                    </div>
+                    @endif
+                    @if (Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dimiss="alert" aria-label="close"></button>
+                    {{Session::get('success')}}
+                    </div>
+                    @endif
+                    
 			@yield('content')
             </div>
             <!-- END content -->
@@ -358,9 +374,9 @@
     <!-- Counter-Up-->
     <script src="../../assetBackEnd/assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
     <script src="../../assetBackEnd/assets/plugins/counterup/jquery.counterup.min.js"></script>
-    
+    @yield('js')
     <!-- END Java Script for this page -->
-
+   
 </body>
 
 </html>

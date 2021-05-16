@@ -15,13 +15,14 @@
 
                 <form action="{{route('categories.update',$cateObj->id)}}" method="POST">
                     @csrf
+                    @method ('PUT')
                     <div class="form-group">
                         <label for="name">Name (required)</label>
-                        <input class="form-control" id="name_cate" name="name" placeholder="Name Category" required="">
+                        <input class="form-control" id="name_cate" name="name" placeholder="{{$cateObj->name}}">
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>
-                        <select  class="form-control" id="status_cate" name="status" required="">
+                        <select  class="form-control" id="status_cate" name="status" >
                             @if ($cateObj->status==0)
                             <option value=1>Public</option>
                             <option value=0>Private</option>
