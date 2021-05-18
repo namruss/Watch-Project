@@ -1,4 +1,8 @@
 @extends('layouts.admin')
+@section('css')
+{{-- <link href="../../../../assetBackEnd/assets/plugins/jquery.filer/css/jquery.filer.css" rel="stylesheet" />
+<link href="../../../../assetBackEnd/assets/plugins/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" rel="stylesheet" /> --}}
+@stop
 @section('content')
 <div class="row">
 
@@ -22,6 +26,8 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Category</th>
+                                <th>Brand</th>
                                 <th>Stock</th>
                                 <th>Status</th>
                                 <th>Created Date</th>
@@ -34,7 +40,10 @@
                             @foreach ($productlist as $item)
                             <tr>
                                 <td>{{$item->name}}</td>
-                                <td>{{$item->product ? $item->product->count() : 0}}</td>
+                                <td>{{$item->category->name}}</td>
+                                <td>{{$item->brand->name}}</td>
+                                <td>{{$item->stock}}</td>
+                                
                                 <td>
                                 @if ($item->status==0)
                                     <span class="btn btn-sm btn-danger">Private</span>
@@ -43,7 +52,7 @@
                                 @endif
                                 </td>
                                 <td>{{$item->created_at->format('m-d-Y')}}</td>   
-                                <td class="text-right" style="display:flex;justify-content:flex-end">
+                                <td class="text-right" style="justify-content:flex-end">
                                     <a href="{{route('products.edit',$item->id)}}" class="btn btn-sm btn-success" style="margin-right:5px">
                                         <i class="fas fa-edit"></i>
                                     </a>
@@ -109,5 +118,6 @@
         }
         )
     </script>
+    
     
 @stop

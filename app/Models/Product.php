@@ -10,22 +10,23 @@ class Product extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        'idCate',
+        'categories_id',
+        'brands_id',
         'name',
         'price',
-        'salePrice',
+        'sale_price',
         'stock',
         'image',
         'description',
-        'isActive'
+        'status'
     ];
 
     public function category(){
-        return $this->hasOne(Category::class,'id','id_categories');
+        return $this->hasOne(Category::class,'id','categories_id');
     }
 
     public function brand(){
-        return $this->hasOne(Brand::class,'id','id_brands');
+        return $this->hasOne(Brand::class,'id','brands_id');
     }
 
     public function scopeSearch($query){

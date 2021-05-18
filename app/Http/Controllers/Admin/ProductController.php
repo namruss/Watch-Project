@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index(){
         $productList = Product::orderBy('name','ASC')->search()->paginate(1);
-        return view('admin.brands.index', ['productlist' => $productList]);
+        return view('admin.products.index', ['productlist' => $productList]);
     }
 
     //live search ajax
@@ -44,25 +46,38 @@ class ProductController extends Controller
 
     //create
     public function create(){
-        return view('admin.products.create');
+        $cates=Category::Where('status',1)->orderBy('name','ASC')->select('name','id')->get();
+        $brands=Brand::Where('status',1)->orderBy('name','ASC')->select('name','id')->get();
+        return view('admin.products.create',[
+            'cates' => $cates,
+            'brands' => $brands
+        ]);
     }
 
     //store
     public function store(Request $req){
+        if($req->has('image')){
+            $file=$req->image;
+            $ext=$file->extension();
+            
+            $file_name=time().'-'.'product'.'.'.$ext;
+           
+            $file->move(public_path('uploads'),$file_name);
+
+        }
+        $req->merge(['image_upload' => $file_name]);
         
-        Product::create([
-            'name'=>$req->name,
-            'status'=>$req->status
-        
-        ]);
-        return redirect()->route('products.index');
+        if(Product::create($req->all())){
+            return redirect()->route('products.index')->with('success','A new product has been inserted to list');
+        } 
+        return redirect()->route('products.index')-with('error','Failed');
     }
 
     //update
     public function update(Request $req, $id){
         $product = Product::find($id);
         if($req->name==null&&$req->status==null){
-            return redirect()->route('categories.index')->with('warning','Nothing has been changed');
+            return redirect()->route('products.index')->with('warning','Nothing has been changed');
         }
         if($req->name==null){
             $req->name=$product->name;

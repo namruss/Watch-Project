@@ -43,7 +43,7 @@
                                 @endif
                                 </td>
                                 <td>{{$item->created_at->format('m-d-Y')}}</td>   
-                                <td class="text-right" style="display:flex;justify-content:flex-end">
+                                <td class="text-right" style="justify-content:flex-end">
                                     <a href="{{route('categories.edit',$item->id)}}" class="btn btn-sm btn-success" style="margin-right:5px">
                                         <i class="fas fa-edit"></i>
                                     </a>

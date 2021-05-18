@@ -24,6 +24,7 @@ $menus = config('menu'); ?>
 
     <!-- Custom CSS -->
     <link href="../../../../assetBackEnd/assets/css/style.css" rel="stylesheet" type="text/css" />
+    @yield('css')
 
     <!-- BEGIN CSS for this page -->
     <link rel="stylesheet" type="text/css" href="assets/plugins/chart.js/Chart.min.css" />

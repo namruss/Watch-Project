@@ -19,10 +19,11 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('brands_id');    
             $table->string('name');
             $table->double('price');
-            $table->double('salePrice')->nullable();
+            $table->double('sale_price')->nullable();
             $table->integer('stock');
+            $table->text('description');
             $table->text('image')->nullable();
-            $table->boolean('isActive');
+            $table->boolean('status');
             $table->foreign('categories_id')->references('id')->on('categories');
             $table->foreign('brands_id')->references('id')->on('brands');
             $table->timestamps();
