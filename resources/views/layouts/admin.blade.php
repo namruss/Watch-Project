@@ -1,7 +1,5 @@
 <?php
-    $menus=config('menu');
-    dd($menus); 
-?>
+$menus = config('menu'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Your website">
-    
+
     <!-- Favicon -->
     <link href="/images/favicon.ico">
-    
+
     <!-- Bootstrap CSS -->
-    <link href="../../../../assetBackEnd/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../../../assetBackEnd/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!--Ajax CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    
+
     <!-- Font Awesome CSS -->
-    <link href="../../../../assetBackEnd/assets/font-awesome/css/all.css" rel="stylesheet"/>
+    <link href="../../../../assetBackEnd/assets/font-awesome/css/all.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
     <link href="../../../../assetBackEnd/assets/css/style.css" rel="stylesheet" type="text/css" />
@@ -52,12 +50,14 @@
 
                 <ul class="list-inline float-right mb-0">
                     <li class="list-inline-item dropdown notif">
-                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#"
+                            aria-haspopup="false" aria-expanded="false">
                             <i class="far fa-envelope"></i>
                             <span class="notif-bullet"></span>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
+                        <div
+                            class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
                                 <h5>
@@ -103,12 +103,14 @@
                     </li>
 
                     <li class="list-inline-item dropdown notif">
-                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#"
+                            aria-haspopup="false" aria-expanded="false">
                             <i class="far fa-bell"></i>
                             <span class="notif-bullet"></span>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
+                        <div
+                            class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
                                 <h5>
@@ -120,7 +122,8 @@
                             <!-- item-->
                             <a href="#" class="dropdown-item notify-item">
                                 <div class="notify-icon bg-faded">
-                                    <img src="assets/images/avatars/avatar2.png" alt="img" class="rounded-circle img-fluid">
+                                    <img src="assets/images/avatars/avatar2.png" alt="img"
+                                        class="rounded-circle img-fluid">
                                 </div>
                                 <p class="notify-details">
                                     <b>John Doe</b>
@@ -132,7 +135,8 @@
                             <!-- item-->
                             <a href="#" class="dropdown-item notify-item">
                                 <div class="notify-icon bg-faded">
-                                    <img src="assets/images/avatars/avatar3.png" alt="img" class="rounded-circle img-fluid">
+                                    <img src="assets/images/avatars/avatar3.png" alt="img"
+                                        class="rounded-circle img-fluid">
                                 </div>
                                 <p class="notify-details">
                                     <b>Michael Cox</b>
@@ -144,7 +148,8 @@
                             <!-- item-->
                             <a href="#" class="dropdown-item notify-item">
                                 <div class="notify-icon bg-faded">
-                                    <img src="assets/images/avatars/avatar4.png" alt="img" class="rounded-circle img-fluid">
+                                    <img src="assets/images/avatars/avatar4.png" alt="img"
+                                        class="rounded-circle img-fluid">
                                 </div>
                                 <p class="notify-details">
                                     <b>Michelle Dolores</b>
@@ -163,11 +168,13 @@
 
 
                     <li class="list-inline-item dropdown notif">
-                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#"
+                            aria-haspopup="false" aria-expanded="false">
                             <i class="fas fa-cog"></i>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-sm">
+                        <div
+                            class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-sm">
                             <!-- item-->
                             <div class="dropdown-item noti-title">
                                 <h5>
@@ -205,7 +212,8 @@
 
 
                     <li class="list-inline-item dropdown notif">
-                        <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#"
+                            aria-haspopup="false" aria-expanded="false">
                             <img src="assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -254,53 +262,46 @@
 
                     <ul>
                         <li class="submenu">
-                            <a class="active" href="{{route('admin.dashboard')}}">
+                            <a class="active" href="{{ route('admin.dashboard') }}">
                                 <i class="fas fa-bars"></i>
                                 <span> Dashboard </span>
                             </a>
                         </li>
-
-                        <li class="submenu">
-                            <a href="users.html">
-                                <i class="fas fa-user"></i>
-                                <span> Users </span>
-                            </a>
-                        </li>
-                 
-
-                        <li class="submenu">
-                            <a id="tables" href="#">
-                                <i class="fas fa-table"></i>
-                                <span> Categories </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="{{route('categories.index')}}">List Category</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('categories.create')}}">Add New Category</a>
-                                </li>
-                            </ul>
-                        </li>
-
-            
-
                     </ul>
-
+                    <ul>
+                        @foreach ($menus as $menus)
+                            <li class="sub-submenu">
+                                <a href="#N">
+                                    <i class="fas {{ $menus['icon'] }}">
+                                    </i>
+                                    <span> {{ $menus['label'] }} </span>
+                                    @if (isset($menus['items']))
+                                        <span class="menu-arrow"></span>
+                                    @endif
+                                </a>
+                                @if (isset($menus['items']))
+                                    <ul class="list-unstyled">
+                                        @foreach ($menus['items'] as $mitem)
+                                            <li>
+                                                <a href="{{ route($mitem['route']) }}">
+                                                    <span>{{ $mitem['label'] }}</span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
                     <div class="clearfix"></div>
-
                 </div>
-
                 <div class="clearfix"></div>
-
             </div>
-
         </div>
         <!-- End Sidebar -->
 
         <div class="content-page">
-            
+
             <!-- Start content -->
             <div class="content">
                 <div class="container-fluid">
@@ -319,64 +320,67 @@
                     </div>
                     @if (Session::has('error'))
                         <div class="alert alert-danger" role="alert">
-                        <a href="" class="close" data-dimiss="alert" aria-label="close" aria-hidden="true"></a>
-                        {{Session::get('error')}}
-                    </div>
+                            <a href="" class="close" data-dimiss="alert" aria-label="close" ></a>
+                            {{ Session::get('error') }}
+                        </div>
                     @endif
                     @if (Session::has('success'))
-                    <div class="alert alert-success" role="alert">
-                    <button type="button" class="close" data-dimiss="alert" aria-label="close"></button>
-                    {{Session::get('success')}}
-                    </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Successfully!</strong> The new category has been updated
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
                     @endif
-                    
-			@yield('content')
+
+                    @yield('content')
+                </div>
+                <!-- END content -->
+
             </div>
-            <!-- END content -->
+            <!-- END content-page -->
+
+            <footer class="footer">
+                <span class="text-right">
+                    Copyright <a target="_blank" href="#">Company</a>
+                </span>
+                <span class="float-right">
+                    <!-- Copyright footer link MUST remain intact if you download free version. -->
+                    <!-- You can delete the links only if you purchased the pro or extended version. -->
+                    <!-- Purchase the pro or extended version with PHP version of this template: https://bootstrap24.com/template/nura-admin-4-free-bootstrap-admin-template -->
+                    Powered by <a target="_blank" href="https://bootstrap24.com"
+                        title="Download free Bootstrap templates"><b>Bootstrap24.com</b></a>
+                </span>
+            </footer>
+
+            <script src="../../assetBackEnd/assets/js/modernizr.min.js"></script>
+            <script src="../../assetBackEnd/assets/js/jquery.min.js"></script>
+            <script src="../../assetBackEnd/assets/js/moment.min.js"></script>
+
+            <script src="../../assetBackEnd/assets/js/popper.min.js"></script>
+            <script src="../../assetBackEnd/assets/js/bootstrap.min.js"></script>
+
+            <script src="../../assetBackEnd/assets/js/detect.js"></script>
+            <script src="../../assetBackEnd/assets/js/fastclick.js"></script>
+            <script src="../../assetBackEnd/assets/js/jquery.blockUI.js"></script>
+            <script src="../../assetBackEnd/assets/js/jquery.nicescroll.js"></script>
+
+            <!-- App js -->
+            <script src="../../assetBackEnd/assets/js/admin.js"></script>
 
         </div>
-        <!-- END content-page -->
+        <!-- END main -->
 
-        <footer class="footer">
-            <span class="text-right">                
-                Copyright <a target="_blank" href="#">Company</a>
-            </span>
-            <span class="float-right">
-                <!-- Copyright footer link MUST remain intact if you download free version. -->
-                <!-- You can delete the links only if you purchased the pro or extended version. -->
-                <!-- Purchase the pro or extended version with PHP version of this template: https://bootstrap24.com/template/nura-admin-4-free-bootstrap-admin-template -->
-                Powered by <a target="_blank" href="https://bootstrap24.com" title="Download free Bootstrap templates"><b>Bootstrap24.com</b></a>
-            </span>
-        </footer>
+        <!-- BEGIN Java Script for this page -->
+        <script src="../../assetBackEnd/assets/plugins/chart.js/Chart.min.js"></script>
+        <script src="../../assetBackEnd/assets/plugins/datatables/datatables.min.js"></script>
 
-        <script src="../../assetBackEnd/assets/js/modernizr.min.js"></script>
-        <script src="../../assetBackEnd/assets/js/jquery.min.js"></script>
-        <script src="../../assetBackEnd/assets/js/moment.min.js"></script>
+        <!-- Counter-Up-->
+        <script src="../../assetBackEnd/assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="../../assetBackEnd/assets/plugins/counterup/jquery.counterup.min.js"></script>
+        @yield('js')
+        <!-- END Java Script for this page -->
 
-        <script src="../../assetBackEnd/assets/js/popper.min.js"></script>
-        <script src="../../assetBackEnd/assets/js/bootstrap.min.js"></script>
-
-        <script src="../../assetBackEnd/assets/js/detect.js"></script>
-        <script src="../../assetBackEnd/assets/js/fastclick.js"></script>
-        <script src="../../assetBackEnd/assets/js/jquery.blockUI.js"></script>
-        <script src="../../assetBackEnd/assets/js/jquery.nicescroll.js"></script>
-
-        <!-- App js -->
-        <script src="../../assetBackEnd/assets/js/admin.js"></script>
-
-    </div>
-    <!-- END main -->
-
-    <!-- BEGIN Java Script for this page -->
-    <script src="../../assetBackEnd/assets/plugins/chart.js/Chart.min.js"></script>
-    <script src="../../assetBackEnd/assets/plugins/datatables/datatables.min.js"></script>
-
-    <!-- Counter-Up-->
-    <script src="../../assetBackEnd/assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
-    <script src="../../assetBackEnd/assets/plugins/counterup/jquery.counterup.min.js"></script>
-    @yield('js')
-    <!-- END Java Script for this page -->
-   
 </body>
 
 </html>

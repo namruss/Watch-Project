@@ -19,7 +19,19 @@ class Product extends Model
         'description',
         'isActive'
     ];
+
     public function category(){
         return $this->hasOne(Category::class,'id','id_categories');
+    }
+
+    public function brand(){
+        return $this->hasOne(Brand::class,'id','id_brands');
+    }
+
+    public function scopeSearch($query){
+        if($key=request()->key){
+            $query=$query->where('name','like','%'.$key.'%');
+        }
+        return $query;
     }
 }

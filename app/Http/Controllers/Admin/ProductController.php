@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Requests\Category\StoreRequest;
-use App\Http\Requests\Category\UpdateRequest;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
-    //index page
     public function index(){
-        $cateList = Category::orderBy('name','ASC')->search()->paginate(1);
-        return view('admin.categories.index', ['catelist' => $cateList]);
+        $productList = Product::orderBy('name','ASC')->search()->paginate(1);
+        return view('admin.brands.index', ['productlist' => $productList]);
     }
 
     //live search ajax
@@ -47,57 +44,52 @@ class CategoryController extends Controller
 
     //create
     public function create(){
-        return view('admin.categories.create');
+        return view('admin.products.create');
     }
 
     //store
-    public function store(StoreRequest $req){
+    public function store(Request $req){
         
-        Category::create([
+        Product::create([
             'name'=>$req->name,
             'status'=>$req->status
         
         ]);
-        return redirect()->route('categories.index');
+        return redirect()->route('products.index');
     }
 
     //update
-    public function update(UpdateRequest $req, $id){
-        $cate = Category::find($id);
+    public function update(Request $req, $id){
+        $product = Product::find($id);
         if($req->name==null&&$req->status==null){
             return redirect()->route('categories.index')->with('warning','Nothing has been changed');
         }
         if($req->name==null){
-            $req->name=$cate->name;
+            $req->name=$product->name;
         }
-        $cateName=Trim($cate->name," ");
-        while(str_contains($cateName,"  ")==true){
-            $cateName=str_replace($cateName,"  "," ");
+        $productName=Trim($product->name," ");
+        while(str_contains($productName,"  ")==true){
+            $productName=str_replace($productName,"  "," ");
         }
-        dd($cateName);
+      
         
-        $cate->name =  $cateName;
-        $cate->status=$req->status;
-        $cate->save();
-        return redirect()->route('categories.index')->with('success','Update successfully');
+        $product->name =  $productName;
+        $product->status=$req->status;
+        $product->save();
+        return redirect()->route('products.index')->with('success','Update successfully');
     }
 
     //edit
     public function edit(Request $req, $id){
-       $cate=Category::find($id);
-       return view('admin.categories.edit',['cateObj'=>$cate]);
+       $product=Product::find($id);
+       return view('admin.products.edit',['productObj'=>$product]);
     }
 
     //delete
     public function delete($id){
-        $cate=Category::find($id);
-        if($cate->product()->count()>0){
-            return redirect()->route('categories.index')->with('error','You only can delete category have no product');
-
-        }
-        else $cate->delete();
-        return redirect()->route('categories.index')->with('success','This category has been deleted');
+        $product=Product::find($id);
+        $product->delete();
+        return redirect()->route('products.index')->with('success','This product has been deleted');
     }
-
 
 }

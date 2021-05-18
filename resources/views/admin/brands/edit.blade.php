@@ -13,18 +13,17 @@
 
             <div class="card-body">
 
-                <form action="{{route('categories.update',$cateObj->id)}}" method="POST">
+                <form action="{{route('brands.update',$brandObj->id)}}" method="POST">
                     @csrf
-                    <input type="hidden" name="id" value="{{$cateObj->id}}">
                     @method ('PUT')
                     <div class="form-group">
                         <label for="name">Name (required)</label>
-                        <input class="form-control" id="name_cate" name="name" placeholder="{{$cateObj->name}}">
+                        <input class="form-control" id="name_brand" name="name" placeholder="{{$brandObj->name}}">
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>
-                        <select  class="form-control" id="status_cate" name="status" >
-                            @if ($cateObj->status==0)
+                        <select  class="form-control" id="status_brand" name="status" >
+                            @if ($brandObj->status==0)
                             <option value=0>Private</option>
                             <option value=1>Public</option>
                             @else

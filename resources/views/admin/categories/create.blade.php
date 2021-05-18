@@ -21,7 +21,10 @@
                     @csrf
                     <div class="form-group">
                         <label for="name">Name (required)</label>
-                        <input class="form-control" id="name_cate" name="name" placeholder="Name Category" required="">
+                        <input class="form-control" id="name_cate" name="name" placeholder="Name Category">
+                        @error('name')
+                            <p class="help-block" style="color:red">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>

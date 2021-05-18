@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Http\Request;
-use App\Http\Requests\Category\StoreRequest;
-use App\Http\Requests\Category\UpdateRequest;
 
-class CategoryController extends Controller
+class BrandController extends Controller
 {
-    //index page
     public function index(){
-        $cateList = Category::orderBy('name','ASC')->search()->paginate(1);
-        return view('admin.categories.index', ['catelist' => $cateList]);
+        $brandList = Brand::orderBy('name','ASC')->search()->paginate(1);
+        return view('admin.brands.index', ['brandlist' => $brandList]);
     }
 
     //live search ajax
@@ -47,57 +44,49 @@ class CategoryController extends Controller
 
     //create
     public function create(){
-        return view('admin.categories.create');
+        return view('admin.brands.create');
     }
 
     //store
-    public function store(StoreRequest $req){
-        
-        Category::create([
+    public function store(Request $req){
+        Brand::create([
             'name'=>$req->name,
             'status'=>$req->status
         
         ]);
-        return redirect()->route('categories.index');
+        return redirect()->route('brands.index');
     }
 
     //update
-    public function update(UpdateRequest $req, $id){
-        $cate = Category::find($id);
+    public function update(Request $req, $id){
+        $brand = Brand::find($id);
         if($req->name==null&&$req->status==null){
-            return redirect()->route('categories.index')->with('warning','Nothing has been changed');
+            return redirect()->route('brands.index')->with('warning','Nothing has been changed');
         }
         if($req->name==null){
-            $req->name=$cate->name;
+            $req->name=$brand->name;
         }
-        $cateName=Trim($cate->name," ");
-        while(str_contains($cateName,"  ")==true){
-            $cateName=str_replace($cateName,"  "," ");
-        }
-        dd($cateName);
-        
-        $cate->name =  $cateName;
-        $cate->status=$req->status;
-        $cate->save();
-        return redirect()->route('categories.index')->with('success','Update successfully');
+        $brand->name = $req->name;
+        $brand->status=$req->status;
+        $brand->save();
+        return redirect()->route('brands.index')->with('success','Update successfully');
     }
 
     //edit
     public function edit(Request $req, $id){
-       $cate=Category::find($id);
-       return view('admin.categories.edit',['cateObj'=>$cate]);
+       $brand=Brand::find($id);
+       return view('admin.brands.edit',['brandObj'=>$brand]);
     }
 
     //delete
     public function delete($id){
-        $cate=Category::find($id);
-        if($cate->product()->count()>0){
-            return redirect()->route('categories.index')->with('error','You only can delete category have no product');
+        $brand=Brand::find($id);
+        if($brand->product()->count()>0){
+            return redirect()->route('brands.index')->with('error','You only can delete category have no product');
 
         }
-        else $cate->delete();
-        return redirect()->route('categories.index')->with('success','This category has been deleted');
+        else $brand->delete();
+        return redirect()->route('brands.index')->with('success','This category has been deleted');
     }
-
 
 }
