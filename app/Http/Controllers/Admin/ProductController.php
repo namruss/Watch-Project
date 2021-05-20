@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
 use Illuminate\Http\Request;
-
 class ProductController extends Controller
 {
-    public function index(){
-        $productList = Product::orderBy('name','ASC')->search()->paginate(1);
+    public function index()
+    {
+        $productList = Product::orderBy('id', 'ASC')->search()->paginate(10);
         return view('admin.products.index', ['productlist' => $productList]);
     }
 
@@ -45,66 +46,95 @@ class ProductController extends Controller
     // }
 
     //create
-    public function create(){
-        $cates=Category::Where('status',1)->orderBy('name','ASC')->select('name','id')->get();
-        $brands=Brand::Where('status',1)->orderBy('name','ASC')->select('name','id')->get();
-        return view('admin.products.create',[
+    public function create()
+    {
+        $cates = Category::Where('status', 1)->orderBy('name', 'ASC')->select('name', 'id')->get();
+        $brands = Brand::Where('status', 1)->orderBy('name', 'ASC')->select('name', 'id')->get();
+        return view('admin.products.create', [
             'cates' => $cates,
             'brands' => $brands
         ]);
     }
 
     //store
-    public function store(Request $req){
-        if($req->has('image')){
-            $file=$req->image;
-            $ext=$file->extension();
-            
-            $file_name=time().'-'.'product'.'.'.$ext;
-           
-            $file->move(public_path('uploads'),$file_name);
+    public function store(ProductRequest $req)
+    {
+        if ($req->has('image_upload')) {
+            $file = $req->image_upload;
+            $ext = $file->extension();
 
+            $file_name = time() . '-' . 'product' . '.' . $ext;
+
+            $file->move(public_path('uploads'), $file_name);
+            $req->merge(['image' => $file_name]);
         }
-        $req->merge(['image_upload' => $file_name]);
-        
-        if(Product::create($req->all())){
-            return redirect()->route('products.index')->with('success','A new product has been inserted to list');
-        } 
-        return redirect()->route('products.index')-with('error','Failed');
+        else $req->image=null;
+
+
+        if (Product::create($req->all())) {
+            return redirect()->route('products.index')->with('success', 'A new product has been inserted to list');
+        }
+        return redirect()->route('products.index') - with('error', 'Failed');
     }
 
     //update
-    public function update(Request $req, $id){
+    public function update(ProductRequest $req, $id)
+    {
+        //  dd($req);   
         $product = Product::find($id);
-        if($req->name==null&&$req->status==null){
-            return redirect()->route('products.index')->with('warning','Nothing has been changed');
+        if ($req->name == null && $req->status == null) {
+            return redirect()->route('products.index')->with('warning', 'Nothing has been changed');
         }
-        if($req->name==null){
-            $req->name=$product->name;
+        if ($req->name == null) {
+            $req->name = $product->name;
         }
-        $productName=Trim($product->name," ");
-        while(str_contains($productName,"  ")==true){
-            $productName=str_replace($productName,"  "," ");
+        // $productName=Trim($product->name," ");
+        // while(str_contains($productName,"  ")==true){
+        //     $productName=str_replace($productName,"  "," ");
+        // }
+        if($req->has('image_upload')){
+            $file = $req->image_upload;
+        $ext = $file->extension();
+
+        $file_name = time() . '-' . 'product' . '.' . $ext;
+
+        $file->move(public_path('uploads'), $file_name);
+        $req->merge(['image' => $file_name]);
         }
-      
+        else $req->image=null;
         
-        $product->name =  $productName;
-        $product->status=$req->status;
+        
+        $product->name =  $req->name;
+        $product->brands_id =  $req->brands_id;
+        $product->categories_id =  $req->categories_id;
+        $product->price =  $req->price;
+        $product->stock =  $req->stock;
+        $product->sale_price =  $req->sale_price;
+        $product->status = $req->status;
+        $product->image = $req->image;
         $product->save();
-        return redirect()->route('products.index')->with('success','Update successfully');
+        return redirect()->route('products.index')->with('success', 'Update successfully');
     }
 
     //edit
-    public function edit(Request $req, $id){
-       $product=Product::find($id);
-       return view('admin.products.edit',['productObj'=>$product]);
+    public function edit(Request $req, $id)
+    {
+        $cates = Category::all();
+        $brands = Brand::Where('status', 1)->orderBy('name', 'ASC')->select('name', 'id')->get();
+        $product = Product::find($id);
+        return view('admin.products.edit', [
+            'productObj' => $product,
+            'cates' => $cates,
+            'brands' => $brands
+
+        ]);
     }
 
     //delete
-    public function delete($id){
-        $product=Product::find($id);
+    public function delete($id)
+    {
+        $product = Product::find($id);
         $product->delete();
-        return redirect()->route('products.index')->with('success','This product has been deleted');
+        return redirect()->route('products.index')->with('success', 'This product has been deleted');
     }
-
 }

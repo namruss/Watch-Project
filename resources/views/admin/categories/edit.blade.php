@@ -19,7 +19,10 @@
                     @method ('PUT')
                     <div class="form-group">
                         <label for="name">Name (required)</label>
-                        <input class="form-control" id="name_cate" name="name" placeholder="{{$cateObj->name}}">
+                        <input class="form-control" id="name_cate" name="name" value="{{$cateObj->name}}">
+                        @error('name')
+                        <p class="help-block" style="color:red">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>

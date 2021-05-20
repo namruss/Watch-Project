@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Requests\Category\StoreRequest;
-use App\Http\Requests\Category\UpdateRequest;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -51,7 +51,7 @@ class CategoryController extends Controller
     }
 
     //store
-    public function store(StoreRequest $req){
+    public function store(CategoryRequest $req){
         
         Category::create([
             'name'=>$req->name,
@@ -62,7 +62,7 @@ class CategoryController extends Controller
     }
 
     //update
-    public function update(UpdateRequest $req, $id){
+    public function update(CategoryRequest $req, $id){
         $cate = Category::find($id);
         if($req->name==null&&$req->status==null){
             return redirect()->route('categories.index')->with('warning','Nothing has been changed');
@@ -70,13 +70,24 @@ class CategoryController extends Controller
         if($req->name==null){
             $req->name=$cate->name;
         }
-        $cateName=Trim($cate->name," ");
-        while(str_contains($cateName,"  ")==true){
-            $cateName=str_replace($cateName,"  "," ");
-        }
-        dd($cateName);
         
-        $cate->name =  $cateName;
+        if($req->status==0){
+                
+            foreach($cate->product as $i){
+               $product=Product::find($i->id);
+               $product->status=0;
+               $product->save();
+                
+            }
+           
+        }
+        // $cateName=Trim($cate->name," ");
+        // while(str_contains($cateName,"  ")==true){
+        //     $cateName=str_replace($cateName,"  "," ");
+        // }
+        
+        
+        $cate->name =  $req->name;
         $cate->status=$req->status;
         $cate->save();
         return redirect()->route('categories.index')->with('success','Update successfully');

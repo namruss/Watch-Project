@@ -7,11 +7,13 @@
                 <div class="row">
                     <div class="col-md-7">
                         <div class="form-group">
-                            <label for="name">Name (required)</label>
-                            <input class="form-control" id="name_cate" name="name" placeholder="Name Category">
                             @error('name')
-                                <p class="help-block" style="color:red">{{$message}}</p>
-                            @enderror
+                                <label class="col-form-label" for="inputError" style="color:red">{{ $message }}</label>
+                            @else
+                                <label for="">Name Product</label>
+                                @endif
+                                <input type="text" class="form-control @error('name') is-invalid  @enderror" name="name"
+                                    >
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
@@ -38,7 +40,7 @@
                         </div> --}}
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input type="file" class="form-control" id="image" name="image">
+                            <input type="file" class="form-control" id="image_upload" name="image_upload">
                         
                             
                         </div>
@@ -63,26 +65,35 @@
                             
                         </div>
                         <div class="form-group">
-                            <label for="price">Price ($)</label>
-                            <input class="form-control" id="price" name="price">
                             @error('price')
-                                <p class="help-block" style="color:red">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="sale_price">Sale Price</label>
-                            <input class="form-control" id="sale_price" name="sale_price">
-                            @error('sale_price')
-                                <p class="help-block" style="color:red">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="stock">Stock</label>
-                            <input class="form-control" id="stock" name="stock">
-                            @error('stock')
-                                <p class="help-block" style="color:red">{{$message}}</p>
-                            @enderror
-                        </div>
+                                <label class="col-form-label" for="inputError" style="color:red">{{ $message }}</label>
+                            @else
+                                <label for="">Price</label>
+                                @endif
+                                <input type="text" class="form-control @error('price') is-invalid  @enderror" name="price"
+                                    >
+        
+                            </div>
+                            <div class="form-group">
+                                @error('sale_price')
+                                    <label class="col-form-label" for="inputError" style="color:red">{{ $message }}</label>
+                                @else
+                                    <label for="sale_price">Sale Price</label>
+                                    @endif
+                                    <input class="form-control @error('price') is-invalid  @enderror" id="sale_price" name="sale_price"
+                                        >
+        
+                                </div>
+                                <div class="form-group">
+                                    @error('stock')
+                                        <label class="col-form-label" for="inputError" style="color:red">{{ $message }}</label>
+                                    @else
+                                        <label for="stock">Stock</label>
+                                        @endif
+                                        <input class="form-control @error('stock') is-invalid  @enderror" id="stock" name="stock"
+                                            >
+        
+                                    </div>
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select  class="form-control" id="status_cate" name="status" required="">

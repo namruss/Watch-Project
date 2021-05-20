@@ -1,4 +1,9 @@
 @extends('layouts.admin')
+@section('css')
+{{-- <link href="../../../../assetBackEnd/assets/plugins/jquery.filer/css/jquery.filer.css" rel="stylesheet" />
+<link href="../../../../assetBackEnd/assets/plugins/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" rel="stylesheet" /> --}}
+<link href="../../../../assetBackEnd/assets/css/me.css" rel="stylesheet"/>
+@stop
 @section('content')
 <div class="row">
 
@@ -105,7 +110,6 @@
             if(confirm('Are you sure?')){
                 $('form#form-delete').submit();
             }
-
         }
         )
     </script>

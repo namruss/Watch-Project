@@ -272,7 +272,7 @@ $menus = config('menu'); ?>
                     <ul>
                         @foreach ($menus as $menus)
                             <li class="sub-submenu">
-                                <a href="#N">
+                                <a href="#">
                                     <i class="fas {{ $menus['icon'] }}">
                                     </i>
                                     <span> {{ $menus['label'] }} </span>
@@ -354,31 +354,31 @@ $menus = config('menu'); ?>
                 </span>
             </footer>
 
-            <script src="../../assetBackEnd/assets/js/modernizr.min.js"></script>
-            <script src="../../assetBackEnd/assets/js/jquery.min.js"></script>
-            <script src="../../assetBackEnd/assets/js/moment.min.js"></script>
+            <script src="../../../../assetBackEnd/assets/js/modernizr.min.js"></script>
+            <script src="../../../../assetBackEnd/assets/js/jquery.min.js"></script>
+            <script src="../../../../assetBackEnd/assets/js/moment.min.js"></script>
 
-            <script src="../../assetBackEnd/assets/js/popper.min.js"></script>
-            <script src="../../assetBackEnd/assets/js/bootstrap.min.js"></script>
+            <script src="../../../../assetBackEnd/assets/js/popper.min.js"></script>
+            <script src="../../../../assetBackEnd/assets/js/bootstrap.min.js"></script>
 
-            <script src="../../assetBackEnd/assets/js/detect.js"></script>
-            <script src="../../assetBackEnd/assets/js/fastclick.js"></script>
-            <script src="../../assetBackEnd/assets/js/jquery.blockUI.js"></script>
-            <script src="../../assetBackEnd/assets/js/jquery.nicescroll.js"></script>
+            <script src="../../../../assetBackEnd/assets/js/detect.js"></script>
+            <script src="../../../../assetBackEnd/assets/js/fastclick.js"></script>
+            <script src="../../../../assetBackEnd/assets/js/jquery.blockUI.js"></script>
+            <script src="../../../../assetBackEnd/assets/js/jquery.nicescroll.js"></script>
 
             <!-- App js -->
-            <script src="../../assetBackEnd/assets/js/admin.js"></script>
+            <script src="../../../../assetBackEnd/assets/js/admin.js"></script>
 
         </div>
         <!-- END main -->
 
         <!-- BEGIN Java Script for this page -->
-        <script src="../../assetBackEnd/assets/plugins/chart.js/Chart.min.js"></script>
-        <script src="../../assetBackEnd/assets/plugins/datatables/datatables.min.js"></script>
+        <script src="../../../../assetBackEnd/assets/plugins/chart.js/Chart.min.js"></script>
+        <script src="../../../../assetBackEnd/assets/plugins/datatables/datatables.min.js"></script>
 
         <!-- Counter-Up-->
-        <script src="../../assetBackEnd/assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
-        <script src="../../assetBackEnd/assets/plugins/counterup/jquery.counterup.min.js"></script>
+        <script src="../../../../assetBackEnd/assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="../../../../assetBackEnd/assets/plugins/counterup/jquery.counterup.min.js"></script>
         @yield('js')
         <!-- END Java Script for this page -->
 

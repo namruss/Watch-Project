@@ -2,6 +2,7 @@
 @section('css')
 {{-- <link href="../../../../assetBackEnd/assets/plugins/jquery.filer/css/jquery.filer.css" rel="stylesheet" />
 <link href="../../../../assetBackEnd/assets/plugins/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" rel="stylesheet" /> --}}
+<link href="../../../../assetBackEnd/assets/css/me.css" rel="stylesheet"/>
 @stop
 @section('content')
 <div class="row">
@@ -25,10 +26,13 @@
                     <table id="dataTable" class="table table-bordered table-hover " style="width:100%">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
+                                <th>Image</th>
                                 <th>Category</th>
                                 <th>Brand</th>
                                 <th>Stock</th>
+                                <th>Price/Sale</th>
                                 <th>Status</th>
                                 <th>Created Date</th>
                                 <th class="text-right">Actions</th>
@@ -39,11 +43,19 @@
                         @else
                             @foreach ($productlist as $item)
                             <tr>
+                                <td>{{$item->id}}</td>
                                 <td>{{$item->name}}</td>
+                                <td><img id="image_product_in_list" src="../../uploads/{{$item->image}}"></td>
                                 <td>{{$item->category->name}}</td>
                                 <td>{{$item->brand->name}}</td>
                                 <td>{{$item->stock}}</td>
-                                
+                                <td>
+                                   @if ($item->sale_price)
+                                       <span>{{$item->price}}/ <span style="font-size:90%" class="badge badge-success">{{$item->sale_price}}</span></span>
+                                   @else
+                                       <span>{{$item->price}}</span>
+                                   @endif 
+                                </td>
                                 <td>
                                 @if ($item->status==0)
                                     <span class="btn btn-sm btn-danger">Private</span>

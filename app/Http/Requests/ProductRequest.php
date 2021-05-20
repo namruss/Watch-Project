@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Category;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +23,22 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
+        $priced = $this->price;
         return [
-            'name' => 'required|unique:categories',
+            'name' => 'required|between:5,30',
+            'price' => 'required|integer|min:0',
+            'sale_price'  => 'required|integer|min:0|max:'.$priced,
+            'image_upload' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'stock' => 'required|integer|min:0'
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Name can not empty',
-            'name.unique' =>'This category has already exits',
-            'name.regex' => 'Name can not contain special characters'
+            'price.required' => 'Price can not empty',
+            
+            
         ];
     }
 }
