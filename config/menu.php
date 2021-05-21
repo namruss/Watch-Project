@@ -60,7 +60,7 @@ return[
             ],
             [
                 'label' => 'Excuted Order List',
-                'route'=>'orders.delivery',
+                'route'=>'orders.excuted',
             ]
         ]  
     ]

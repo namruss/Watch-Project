@@ -120,7 +120,7 @@ class ProductController extends Controller
     }
 
     //edit
-    public function edit(Request $req, $id)
+    public function edit($id)
     {
         $cates = Category::all();
         $brands = Brand::Where('status', 1)->orderBy('name', 'ASC')->select('name', 'id')->get();

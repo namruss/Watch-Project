@@ -1,8 +1,15 @@
 .table td{
     vertical-align: inherit;
 }
+.table thead th{
+    vertical-align: inherit;
+}
 #image_product_in_list{
     width: 60px;
     height:60px;
     
+}
+#submitne{
+    margin-top:10px;
+    width: 114.8px;
 }

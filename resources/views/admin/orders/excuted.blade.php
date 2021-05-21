@@ -8,7 +8,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="card mb-3">
             <div class="card-header">
-                <h3><i class="fas fa-table"></i> Order List</h3>
+                <h3><i class="fas fa-table"></i> Excuted Order List</h3>
             </div>
             
             <div class="card-body">

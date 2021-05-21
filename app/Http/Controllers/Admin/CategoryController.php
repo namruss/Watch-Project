@@ -97,7 +97,7 @@ class CategoryController extends Controller
     }
 
     //edit
-    public function edit(Request $req, $id)
+    public function edit( $id)
     {
         $cate = Category::find($id);
         return view('admin.categories.edit', ['cateObj' => $cate]);
