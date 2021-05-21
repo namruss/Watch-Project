@@ -9,7 +9,6 @@ class User extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
         'name',
         'phone',
         'address',
@@ -19,4 +18,8 @@ class User extends Model
         'image',
         'status'
     ];
+
+    public function order(){
+        return $this->hasMany(Order::class,'user_id','id');
+    }
 }

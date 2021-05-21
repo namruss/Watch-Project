@@ -88,11 +88,27 @@
 
                             </div>
                             <div class="form-group">
-                                <label for="status">Status</label>
+                                @if(Session::has('status-error'))
+                                <label class="col-form-label" for="inputError" style="color:red">{{Session::get('status-error')}}</label>
+                                @else
+                            <label for="status">Status</label>
+                                @endif
+                                @if ($productObj->status==0)
                                 <select class="form-control" id="status_cate" name="status" required="">
+                                    <option value=0>Private</option>
+                                    <option value=1>Public</option>
+
+                                </select>
+                                @else
+                                <select class="form-control" id="status_cate" name="status" required="">
+                                    
                                     <option value=1>Public</option>
                                     <option value=0>Private</option>
+
                                 </select>
+                                @endif
+                               
+                                
                             </div>
 
                         </div>

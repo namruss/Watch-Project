@@ -24,13 +24,22 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         $priced = $this->price;
-        return [
-            'name' => 'required|between:5,30',
+        if (!empty($this->id)) {
+            $id = $this->id;
+        }
+        $rulesCollection = [
+            'name' => 'required|between:5,30|unique:products,name',
             'price' => 'required|integer|min:0',
-            'sale_price'  => 'required|integer|min:0|max:'.$priced,
+            'sale_price'  => 'min:0|max:'.$priced,
             'image_upload' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'stock' => 'required|integer|min:0'
+            'stock' => 'required|integer|min:0'         
         ];
+        if (strcmp($this->method(), "PUT") == 0 && !empty($this->id)) {
+            $rulesCollection['name'] .= "," . $this->id;
+            
+        }
+        
+        return $rulesCollection;
     }
 
     public function messages()

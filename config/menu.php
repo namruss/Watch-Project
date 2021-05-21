@@ -44,7 +44,27 @@ return[
                 'route'=>'products.create',
             ]
         ]  
+    ],
+
+    [
+        'label'=>'Order Managerment',
+        'route'=>'orders.index',
+        'icon'=>'fa-box ',
+        'items'=>[
+            [   'label'=>'Processing Order List',
+                'route'=>'orders.index',
+            ],
+            [
+                'label' => 'Being Delivery Order List',
+                'route'=>'orders.delivery',
+            ],
+            [
+                'label' => 'Excuted Order List',
+                'route'=>'orders.delivery',
+            ]
+        ]  
     ]
+
 
 ]
 ?>

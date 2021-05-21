@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix'=>'admin','namespace'=>'App\Http\Controllers\Admin'],function(){
     Route::get('/',"AdminController@login")->name('admin.login');
     Route::get('/dashboard',"AdminController@dashboard")->name('admin.dashboard');
+    //Profile
+    Route::get('/profile',"AdminController@profile")->name('admin.profile');
     //Categories
     Route::get('/categories',"CategoryController@index")->name('categories.index');
     Route::get('/categories/search', "CategoryController@search")->name('categories.search');
@@ -39,4 +41,14 @@ Route::group(['prefix'=>'admin','namespace'=>'App\Http\Controllers\Admin'],funct
     Route::get('/products/{id}/edit',"ProductController@edit")->name('products.edit');
     Route::put('/products/{id}',"ProductController@update")->name('products.update');
     Route::delete('/products/{id}',"ProductController@delete")->name('products.delete');
+     //Order
+     Route::get('/orders',"OrderController@index")->name('orders.index');
+     Route::get('/orders/delivery_order_list',"OrderController@delivery")->name('orders.delivery');
+     Route::get('/orders/excuted_order_list',"OrderController@excuted")->name('orders.excuted');
+     Route::get('/orders/search', "OrderController@search")->name('orders.search');
+     Route::post('/orders',"OrderController@store")->name('orders.store');
+     Route::get('/orders/{id}/edit',"OrderController@edit")->name('orders.edit');
+     Route::put('/orders/{id}',"OrderController@update")->name('orders.update');
+     Route::delete('/orders/{id}',"ProductController@delete")->name('orders.delete');
+    
 });

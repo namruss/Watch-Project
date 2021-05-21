@@ -29,6 +29,10 @@ class Product extends Model
         return $this->hasOne(Brand::class,'id','brands_id');
     }
 
+    public function order_detail(){
+        return $this->hasMany(OrderDetail::class,'products_id','id');
+    }
+
     public function scopeSearch($query){
         if($key=request()->key){
             $query=$query->where('name','like','%'.$key.'%');

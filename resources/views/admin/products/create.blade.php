@@ -80,7 +80,7 @@
                                 @else
                                     <label for="sale_price">Sale Price</label>
                                     @endif
-                                    <input class="form-control @error('price') is-invalid  @enderror" id="sale_price" name="sale_price"
+                                    <input class="form-control @error('sale_price') is-invalid  @enderror" id="sale_price" name="sale_price"
                                         >
         
                                 </div>

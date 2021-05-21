@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -65,6 +66,15 @@ class BrandController extends Controller
         }
         if($req->name==null){
             $req->name=$brand->name;
+        }
+        foreach ($brand->product as $i) {
+            $product = Product::find($i->id);
+            if ($req->status == 0) {
+                $product->status = 0;
+            } else {
+                $product->status = 1;
+            }
+            $product->save();
         }
         $brand->name = $req->name;
         $brand->status=$req->status;

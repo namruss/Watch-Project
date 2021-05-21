@@ -226,7 +226,7 @@ $menus = config('menu'); ?>
                             </div>
 
                             <!-- item-->
-                            <a href="profile.html" class="dropdown-item notify-item">
+                            <a href="#" class="dropdown-item notify-item">
                                 <i class="fas fa-user"></i>
                                 <span>Profile</span>
                             </a>

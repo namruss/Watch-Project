@@ -16,11 +16,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('users_id');
-            $table->dateTime('oderDate');
-            $table->string('customerName');
-            $table->string('customerAddress');
-            $table->string('customerPhone');
-            $table->string('paymentMethod');
+            $table->dateTime('order_date');
+            $table->string('customer_name');
+            $table->string('customer_address');
+            $table->string('customer_phone');
+            $table->tinyInteger('payment_method');
             $table->double('total');
             $table->boolean('status');
             $table->foreign('users_id')->references('id')->on('users');
@@ -37,4 +37,6 @@ class CreateOrdersTable extends Migration
     {
         Schema::dropIfExists('orders');
     }
+
+
 }

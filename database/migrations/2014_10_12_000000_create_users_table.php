@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->tinyInteger('level');
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->timestamps();
             $table->boolean('status');
         });

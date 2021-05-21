@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 class ProductController extends Controller
 {
     public function index()
@@ -69,7 +71,9 @@ class ProductController extends Controller
             $req->merge(['image' => $file_name]);
         }
         else $req->image=null;
-
+        if($req->sale_price==null){
+            $req->sale_price=$req->price;
+        }
 
         if (Product::create($req->all())) {
             return redirect()->route('products.index')->with('success', 'A new product has been inserted to list');
@@ -88,10 +92,6 @@ class ProductController extends Controller
         if ($req->name == null) {
             $req->name = $product->name;
         }
-        // $productName=Trim($product->name," ");
-        // while(str_contains($productName,"  ")==true){
-        //     $productName=str_replace($productName,"  "," ");
-        // }
         if($req->has('image_upload')){
             $file = $req->image_upload;
         $ext = $file->extension();
@@ -101,14 +101,17 @@ class ProductController extends Controller
         $file->move(public_path('uploads'), $file_name);
         $req->merge(['image' => $file_name]);
         }
-        else $req->image=null;
-        
-        
+        else $req->image=$product->image;
+        if(($product->category->status==0||$product->brand->status==0)&&$req->status==1)
+        {
+            return redirect()->route('products.edit',$id)->with('status-error','Can not change status this product because the status of category or brand is private');
+        }
         $product->name =  $req->name;
         $product->brands_id =  $req->brands_id;
         $product->categories_id =  $req->categories_id;
         $product->price =  $req->price;
         $product->stock =  $req->stock;
+        $product->description =$req->description;
         $product->sale_price =  $req->sale_price;
         $product->status = $req->status;
         $product->image = $req->image;
